@@ -1,0 +1,33 @@
+{% macro about() %}
+<div class="user-details">
+    <h1> What is Grogu? </h1>
+    <p> {{ config.extra.what_is }} </p>
+</div>
+<div class="user">
+    <div class="tech">
+        <h2>Safety</h2>
+        <p>Mumblecore hexagon kombucha, pitchfork four loko raclette intelligentsia master cleanse.
+            Vinyl XOXO lumbersexual</p>
+    </div>
+    <div class="tech">
+        <h2>Fast</h2>
+        <p>Mumblecore hexagon kombucha, pitchfork four loko raclette intelligentsia master cleanse.
+            Vinyl XOXO lumbersexual</p>
+    </div>
+    <div class="tech">
+        <h2>Scalable</h2>
+        <p>Mumblecore hexagon kombucha, pitchfork four loko raclette intelligentsia master cleanse.
+            Vinyl XOXO lumbersexual</p>
+    </div>
+</div>
+{% endmacro about %}
+
+{% macro projects() %}
+<div class="user-details">
+    <h1> Architecture Diagram </h1>
+</div>
+<div class="user-projects">
+    <img alt="mountains" src="{{ config.base_url ~ "/img/architecture.png" }}" />
+</div>
+{% endmacro projects %}
+

@@ -1,0 +1,29 @@
+[book]
+title = "Grogu Document"
+description = "Grogu Document"
+authors = ["francis-du"]
+language = "en"
+multilingual = false
+
+[rust]
+edition = "2018"
+
+[output.html]
+#cname = ""
+theme = "theme/grogu"
+default-theme = "grogu"
+mathjax-support = true
+git-repository-url = "https://github.com/francis-du/grogu"
+
+[output.html.playground]
+editable = false
+line-numbers = false
+
+[output.html.search]
+limit-results = 20
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 2
+boost-paragraph = 1
+expand = true
+heading-split-level = 2

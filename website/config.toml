@@ -1,0 +1,17 @@
+base_url = "https://particle.vercel.app"
+title = "Grogu | A federated query engine"
+description = "A federated query engine"
+
+compile_sass = true
+highlight_code = true
+build_search_index = false
+default_language = "en"
+google_analytics.id = ""
+
+[extra]
+username = "Grogu"
+what_is = "Grogu is a federated query engine."
+user_title = "A federated query engine"
+email = "francis@francis.run"
+twitter_username = "francis_run"
+github_username = "francis-du"
