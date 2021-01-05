@@ -13,5 +13,4 @@ jobs:
       - name: Publish to crates-io
         run: |
           cargo publish --token  ${{secrets.PUBLISH_KEY}} --verbose
-          cd lib/rust
-          cargo publish --token  ${{secrets.PUBLISH_KEY}} --verbose
+          cd lib/rust && cargo publish --token  ${{secrets.PUBLISH_KEY}} --verbose
