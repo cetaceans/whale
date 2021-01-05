@@ -25,7 +25,7 @@ serde = { version = "1.0.110", features = ["derive"] }
 structopt = { version = "0.3", features = ["paw"] }
 tokio = { version = "0.2", features = ["macros"] }
 futures = { version = "0.3", default-features = false, features = ["alloc"] }
-arrow = { git = "https://github.com/apache/arrow" }
-arrow-flight = { git = "https://github.com/apache/arrow" }
-datafusion = { git = "https://github.com/apache/arrow" }
-parquet = { git = "https://github.com/apache/arrow" }
+arrow = { git = "https://github.com/apache/arrow", version = "3.0.0-SNAPSHOT" }
+arrow-flight = { git = "https://github.com/apache/arrow", version = "3.0.0-SNAPSHOT" }
+datafusion = { git = "https://github.com/apache/arrow", version = "3.0.0-SNAPSHOT" }
+parquet = { git = "https://github.com/apache/arrow", version = "3.0.0-SNAPSHOT" }
