@@ -1,17 +1,17 @@
 use std::pin::Pin;
 
 use arrow_flight::{
-    Action, ActionType, Criteria,
-    Empty, flight_service_server::FlightService, flight_service_server::FlightServiceServer, FlightData, FlightDescriptor, FlightInfo, HandshakeRequest,
+    flight_service_server::FlightService, flight_service_server::FlightServiceServer, Action,
+    ActionType, Criteria, Empty, FlightData, FlightDescriptor, FlightInfo, HandshakeRequest,
     HandshakeResponse, PutResult, SchemaResult, Ticket,
 };
-use datafusion::{datasource::parquet::ParquetTable, physical_plan::collect};
 use datafusion::datasource::TableProvider;
 use datafusion::prelude::*;
+use datafusion::{datasource::parquet::ParquetTable, physical_plan::collect};
 use futures::Stream;
 use log::{debug, info};
-use tonic::{Request, Response, Status, Streaming};
 use tonic::transport::Server;
+use tonic::{Request, Response, Status, Streaming};
 
 #[derive(Clone)]
 struct FlightServiceImpl {}
@@ -19,7 +19,7 @@ struct FlightServiceImpl {}
 #[tonic::async_trait]
 impl FlightService for FlightServiceImpl {
     type HandshakeStream =
-    Pin<Box<dyn Stream<Item=Result<HandshakeResponse, Status>> + Send + Sync + 'static>>;
+        Pin<Box<dyn Stream<Item = Result<HandshakeResponse, Status>> + Send + Sync + 'static>>;
     async fn handshake(
         &self,
         _request: Request<Streaming<HandshakeRequest>>,
@@ -27,7 +27,7 @@ impl FlightService for FlightServiceImpl {
         Err(Status::unimplemented("Not yet implemented"))
     }
     type ListFlightsStream =
-    Pin<Box<dyn Stream<Item=Result<FlightInfo, Status>> + Send + Sync + 'static>>;
+        Pin<Box<dyn Stream<Item = Result<FlightInfo, Status>> + Send + Sync + 'static>>;
     async fn list_flights(
         &self,
         _request: Request<Criteria>,
@@ -55,7 +55,7 @@ impl FlightService for FlightServiceImpl {
         Ok(Response::new(schema_result))
     }
     type DoGetStream =
-    Pin<Box<dyn Stream<Item=Result<FlightData, Status>> + Send + Sync + 'static>>;
+        Pin<Box<dyn Stream<Item = Result<FlightData, Status>> + Send + Sync + 'static>>;
 
     async fn do_get(
         &self,
@@ -67,8 +67,11 @@ impl FlightService for FlightServiceImpl {
                 debug!("do_get: {}", sql);
                 let mut ctx = ExecutionContext::new();
 
-                ctx.register_parquet("test", "F:/Rust/arrow/cpp/submodules/parquet-testing/data/alltypes_plain.parquet")
-                    .map_err(|e| to_tonic_err(&e))?;
+                ctx.register_parquet(
+                    "test",
+                    "F:/Rust/arrow/cpp/submodules/parquet-testing/data/alltypes_plain.parquet",
+                )
+                .map_err(|e| to_tonic_err(&e))?;
 
                 // create the query plan
                 let plan = ctx
@@ -112,7 +115,7 @@ impl FlightService for FlightServiceImpl {
     }
 
     type DoPutStream =
-    Pin<Box<dyn Stream<Item=Result<PutResult, Status>> + Send + Sync + 'static>>;
+        Pin<Box<dyn Stream<Item = Result<PutResult, Status>> + Send + Sync + 'static>>;
 
     async fn do_put(
         &self,
@@ -122,7 +125,7 @@ impl FlightService for FlightServiceImpl {
     }
 
     type DoExchangeStream =
-    Pin<Box<dyn Stream<Item=Result<FlightData, Status>> + Send + Sync + 'static>>;
+        Pin<Box<dyn Stream<Item = Result<FlightData, Status>> + Send + Sync + 'static>>;
 
     async fn do_exchange(
         &self,
@@ -132,7 +135,7 @@ impl FlightService for FlightServiceImpl {
     }
 
     type DoActionStream =
-    Pin<Box<dyn Stream<Item=Result<arrow_flight::Result, Status>> + Send + Sync + 'static>>;
+        Pin<Box<dyn Stream<Item = Result<arrow_flight::Result, Status>> + Send + Sync + 'static>>;
 
     async fn do_action(
         &self,
@@ -142,7 +145,7 @@ impl FlightService for FlightServiceImpl {
     }
 
     type ListActionsStream =
-    Pin<Box<dyn Stream<Item=Result<ActionType, Status>> + Send + Sync + 'static>>;
+        Pin<Box<dyn Stream<Item = Result<ActionType, Status>> + Send + Sync + 'static>>;
 
     async fn list_actions(
         &self,

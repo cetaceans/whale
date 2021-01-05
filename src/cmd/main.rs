@@ -8,8 +8,8 @@ use arrow::util::pretty;
 use datafusion::error::DataFusionError;
 use datafusion::execution::context::{ExecutionConfig, ExecutionContext};
 use log::{error, info};
-use rustyline::Editor;
 use rustyline::error::ReadlineError;
+use rustyline::Editor;
 use structopt::StructOpt;
 
 use whale::common::logger::Logger;
@@ -165,7 +165,7 @@ Version: {}\n{}\nEnter the `help` command to view help information.",
                         rl.add_history_entry(query.clone().as_str());
                         match client.exec_query(query).await {
                             Ok(_) => {}
-                            Err(err) => println!("{}", err)
+                            Err(err) => println!("{}", err),
                         }
                         query = "".to_owned();
                     }
@@ -186,7 +186,7 @@ Version: {}\n{}\nEnter the `help` command to view help information.",
             }
             rl.save_history(history.as_path()).unwrap();
         }
-        Err(err) => println!("Server connection failed.-[{}]", err)
+        Err(err) => println!("Server connection failed.-[{}]", err),
     };
     Ok(())
 }
