@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Publish to crates-io
         run: |
-        cargo publish --token  ${{secrets.PUBLISH_KEY}} --verbose
-        cd lib/rust
-        cargo publish --token  ${{secrets.PUBLISH_KEY}} --verbose
+          cargo publish --token  ${{secrets.PUBLISH_KEY}} --verbose
+          cd lib/rust
+          cargo publish --token  ${{secrets.PUBLISH_KEY}} --verbose
