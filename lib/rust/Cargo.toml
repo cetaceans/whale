@@ -1,6 +1,6 @@
 [package]
 name = "whale-rs"
-version = "beta-0.0.1"
+version = "0.0.1"
 authors = ["francis-du <francis@francisdu.com>"]
 edition = "2018"
 
