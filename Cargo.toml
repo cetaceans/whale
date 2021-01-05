@@ -9,10 +9,20 @@ name = "whale"
 path = "src/cmd/main.rs"
 
 [dependencies]
+log = "0.4.11"
+fern = "0.5"
+dirs = "3.0.1"
+chrono = "0.4"
+paw = "1.0"
 sqlparser = "0.6.1"
-structopt = "0.3"
 tonic = "0.3"
+rustyline = "1.0.0"
 
+serde_json = "1.0"
+serde_derive = "0.9"
+serde = { version = "1.0.110", features = ["derive"] }
+
+structopt = { version = "0.3", features = ["paw"] }
 tokio = { version = "0.2", features = ["macros"] }
 futures = { version = "0.3", default-features = false, features = ["alloc"] }
 arrow = { git = "https://github.com/apache/arrow" }

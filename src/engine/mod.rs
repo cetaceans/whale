@@ -1,6 +1,7 @@
 pub mod auth;
 pub mod cache;
 pub mod cleanup;
+pub mod client;
 pub mod context;
 pub mod ddl;
 pub mod io;
