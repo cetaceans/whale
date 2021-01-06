@@ -4,10 +4,6 @@ version = "0.0.1"
 authors = ["francis-du <francis@francisdu.com>"]
 edition = "2018"
 
-[lib]
-name = "whale-rs"
-path = "src/lib.rs"
-
 [dependencies]
 
 

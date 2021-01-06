@@ -1,4 +1,3 @@
-use std::error::Error;
 use std::fs;
 use std::fs::File;
 use std::io::Read;
@@ -8,8 +7,8 @@ use arrow::util::pretty;
 use datafusion::error::DataFusionError;
 use datafusion::execution::context::{ExecutionConfig, ExecutionContext};
 use log::{error, info};
-use rustyline::error::ReadlineError;
 use rustyline::Editor;
+use rustyline::error::ReadlineError;
 use structopt::StructOpt;
 
 use whale::common::logger::Logger;
@@ -125,7 +124,6 @@ fn main(args: paw::Args) {
             }
             _ => {}
         },
-        _ => {}
     }
 }
 

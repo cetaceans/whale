@@ -16,9 +16,6 @@ jobs:
           - build: stable
             os: ubuntu-latest
             rust: stable
-          - build: beta
-            os: ubuntu-latest
-            rust: beta
           - build: nightly
             os: ubuntu-latest
             rust: nightly
@@ -28,21 +25,22 @@ jobs:
           - build: windows
             os: windows-latest
             rust: stable
-          - build: msrv
-            os: ubuntu-latest
-            rust: 1.49.0
     steps:
       - uses: actions/checkout@master
       - name: Install Rust
         run: |
           rustup set profile minimal
-          rustup component add rustfmt
+          rustup component add rustfmt clippy
           rustup update --no-self-update ${{ matrix.rust }}
           rustup default ${{ matrix.rust }}
           rustup -V
           rustc -Vv
           cargo -V
       - name: Build and run tests
-        run: cargo test
+        run: |
+          cargo test
+          cd lib/rust cargo test
       - name: Test no default
-        run: cargo test --no-default-features
+        run: |
+          cargo test --no-default-features
+          cd lib/rust cargo test --no-default-features
