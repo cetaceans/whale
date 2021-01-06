@@ -9,6 +9,7 @@ name = "whale"
 path = "src/cmd/main.rs"
 
 [dependencies]
+toml = "0.5.8"
 log = "0.4.11"
 fern = "0.5"
 dirs = "3.0.1"

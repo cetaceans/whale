@@ -14,7 +14,7 @@ pub struct Client {
 
 impl Client {
     pub async fn connect(url: String) -> Result<Self, Box<dyn std::error::Error>> {
-        let client = FlightServiceClient::connect(url).await?;
+        let client = FlightServiceClient::connect(format!("http://{}", url)).await?;
         Ok(Self { client })
     }
 

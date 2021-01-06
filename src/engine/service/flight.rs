@@ -1,51 +1,56 @@
 use std::pin::Pin;
 
 use arrow_flight::{
-    flight_service_server::FlightService, flight_service_server::FlightServiceServer, Action,
-    ActionType, Criteria, Empty, FlightData, FlightDescriptor, FlightInfo, HandshakeRequest,
-    HandshakeResponse, PutResult, SchemaResult, Ticket,
+    flight_service_server::FlightService, Action, ActionType, Criteria, Empty, FlightData,
+    FlightDescriptor, FlightInfo, HandshakeRequest, HandshakeResponse, PutResult, SchemaResult,
+    Ticket,
 };
 use datafusion::datasource::TableProvider;
 use datafusion::prelude::*;
 use datafusion::{datasource::parquet::ParquetTable, physical_plan::collect};
 use futures::Stream;
-use log::{debug, info};
-use tonic::transport::Server;
+use log::debug;
 use tonic::{Request, Response, Status, Streaming};
 
 #[derive(Clone)]
-struct FlightServiceImpl {}
+pub struct WhaleFlightService {}
 
 #[tonic::async_trait]
-impl FlightService for FlightServiceImpl {
+impl FlightService for WhaleFlightService {
     type HandshakeStream =
         Pin<Box<dyn Stream<Item = Result<HandshakeResponse, Status>> + Send + Sync + 'static>>;
+
     async fn handshake(
         &self,
         _request: Request<Streaming<HandshakeRequest>>,
     ) -> Result<Response<Self::HandshakeStream>, Status> {
         Err(Status::unimplemented("Not yet implemented"))
     }
+
     type ListFlightsStream =
         Pin<Box<dyn Stream<Item = Result<FlightInfo, Status>> + Send + Sync + 'static>>;
+
     async fn list_flights(
         &self,
         _request: Request<Criteria>,
     ) -> Result<Response<Self::ListFlightsStream>, Status> {
         Err(Status::unimplemented("Not yet implemented"))
     }
+
     async fn get_flight_info(
         &self,
         _request: Request<FlightDescriptor>,
     ) -> Result<Response<FlightInfo>, Status> {
         Err(Status::unimplemented("Not yet implemented"))
     }
+
     async fn get_schema(
         &self,
         request: Request<FlightDescriptor>,
     ) -> Result<Response<SchemaResult>, Status> {
-        let request = request.into_inner();
+        debug!("get_schema");
 
+        let request = request.into_inner();
         let table = ParquetTable::try_new(&request.path[0], 200).unwrap();
 
         let options = arrow::ipc::writer::IpcWriteOptions::default();
@@ -54,6 +59,7 @@ impl FlightService for FlightServiceImpl {
 
         Ok(Response::new(schema_result))
     }
+
     type DoGetStream =
         Pin<Box<dyn Stream<Item = Result<FlightData, Status>> + Send + Sync + 'static>>;
 
@@ -157,14 +163,4 @@ impl FlightService for FlightServiceImpl {
 
 fn to_tonic_err(e: &datafusion::error::DataFusionError) -> Status {
     Status::internal(format!("{:?}", e))
-}
-
-#[tokio::main]
-pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
-    let addr = "0.0.0.0:50051".parse()?;
-    let service = FlightServiceImpl {};
-    let svc = FlightServiceServer::new(service);
-    info!("Listening on {:?}", addr);
-    Server::builder().add_service(svc).serve(addr).await?;
-    Ok(())
 }

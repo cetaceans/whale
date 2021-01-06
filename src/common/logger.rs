@@ -4,6 +4,8 @@ use std::path::PathBuf;
 use serde::Deserialize;
 use serde::Serialize;
 
+use crate::common::config::WhaleConfig;
+
 #[derive(Serialize, Deserialize)]
 pub struct Logger {
     pub level: String,
@@ -13,7 +15,7 @@ pub struct Logger {
 impl Logger {
     pub fn level(level: &str) -> Result<Logger, fern::InitError> {
         let mut base_config = fern::Dispatch::new();
-        let log_path = dirs::cache_dir().unwrap().join("whale.log");
+        let log_path = WhaleConfig::default().log_path;
 
         base_config = match level {
             "trace" => base_config

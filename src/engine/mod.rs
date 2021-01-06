@@ -6,6 +6,7 @@ pub mod context;
 pub mod ddl;
 pub mod io;
 pub mod server;
+pub mod service;
 pub mod sql;
 pub mod stats;
 pub mod store;
