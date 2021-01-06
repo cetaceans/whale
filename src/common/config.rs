@@ -25,7 +25,7 @@ impl WhaleConfig {
             config_path,
             log_path: dirs::cache_dir().unwrap().join("whale.log"),
             his_path: dirs::cache_dir().unwrap().join("whale.his"),
-            server_url: "localhost:3697".to_string(),
+            server_url: "0.0.0.0:3697".to_string(),
         }
     }
 }
