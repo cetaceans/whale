@@ -13,13 +13,13 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: whale
-            asset_name: koi-linux-amd64
+            asset_name: whale-linux-amd64
           - os: windows-latest
             artifact_name: whale.exe
-            asset_name: koi-windows-amd64.exe
+            asset_name: whale-windows-amd64.exe
           - os: macos-latest
             artifact_name: whale
-            asset_name: koi-macos-amd64
+            asset_name: whale-macos-amd64
     steps:
       - uses: actions/checkout@v2
       - name: Build
