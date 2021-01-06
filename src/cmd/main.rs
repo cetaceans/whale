@@ -7,8 +7,8 @@ use arrow::util::pretty;
 use datafusion::error::DataFusionError;
 use datafusion::execution::context::{ExecutionConfig, ExecutionContext};
 use log::{error, info};
-use rustyline::Editor;
 use rustyline::error::ReadlineError;
+use rustyline::Editor;
 use structopt::StructOpt;
 
 use whale::common::logger::Logger;
