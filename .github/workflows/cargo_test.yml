@@ -37,10 +37,6 @@ jobs:
           rustc -Vv
           cargo -V
       - name: Build and run tests
-        run: |
-          cargo test
-          cd lib/rust cargo test
+        run: cargo test
       - name: Test no default
-        run: |
-          cargo test --no-default-features
-          cd lib/rust cargo test --no-default-features
+        run: cargo test --no-default-features
