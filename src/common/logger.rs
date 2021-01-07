@@ -15,7 +15,7 @@ pub struct Logger {
 impl Logger {
     pub fn level(level: &str) -> Result<Logger, fern::InitError> {
         let mut base_config = fern::Dispatch::new();
-        let log_path = WhaleConfig::default().log_path;
+        let log_path = WhaleConfig::default().base.log_path;
 
         base_config = match level {
             "trace" => base_config

@@ -1,3 +1,5 @@
+#![feature(default_free_fn)]
+
 pub use arrow;
 pub use arrow_flight;
 pub use datafusion;
