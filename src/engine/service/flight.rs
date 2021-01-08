@@ -73,11 +73,8 @@ impl FlightService for WhaleFlightService {
                 debug!("do_get: {}", sql);
                 let mut ctx = ExecutionContext::new();
 
-                ctx.register_parquet(
-                    "test",
-                    "F:/Rust/arrow/cpp/submodules/parquet-testing/data/alltypes_plain.parquet",
-                )
-                .map_err(|e| to_tonic_err(&e))?;
+                ctx.register_parquet("test", "F:/Rust/whale/test/data/alltypes_plain.parquet")
+                    .map_err(|e| to_tonic_err(&e))?;
 
                 // create the query plan
                 let plan = ctx

@@ -1,4 +1,3 @@
-mod compile;
-mod optimize;
-mod parse;
+mod parser;
 mod plan;
+mod planner;
